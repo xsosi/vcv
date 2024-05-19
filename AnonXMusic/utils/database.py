@@ -4,15 +4,7 @@ from typing import Dict, List, Union
 from AnonXMusic import userbot
 from AnonXMusic.core.mongo import mongodb
 
-#
-# Copyright (C) 2021-present by TeamYukki@Github, < https://github.com/TeamYukki >.
-#
-# This file is part of < https://github.com/TeamYukki/AnonXMusicBot > project,
-# and is released under the "GNU v3.0 License Agreement".
-# Please see < https://github.com/TeamYukki/AnonXMusicBot/blob/master/LICENSE >
-#
-# All rights reserved.
-#
+
 
 import random
 import config
@@ -20,41 +12,42 @@ from AnonXMusic import userbot
 from typing import Dict, List, Union
 from AnonXMusic.core.mongo import mongodb
 
+
+authdb = mongodb.adminauth
+authuserdb = mongodb.authuser
+autoenddb = mongodb.autoend
+assdb = mongodb.assistants
+blacklist_chatdb = mongodb.blacklistChat
+blockeddb = mongodb.blockedusers
+chatsdb = mongodb.chats
 channeldb = mongodb.cplaymode
-commanddb = mongodb.commands
-cleandb = mongodb.cleanmode
+countdb = mongodb.upcount
+gbansdb = mongodb.gban
+langdb = mongodb.language
+onoffdb = mongodb.onoffper
 playmodedb = mongodb.playmode
 playtypedb = mongodb.playtypedb
-langdb = mongodb.language
-authdb = mongodb.adminauth
-videodb = mongodb.Anonvideocalls
-onoffdb = mongodb.onoffper
-suggdb = mongodb.suggestion
-autoenddb = mongodb.autoend
-coupledb = mongodb.couple
-notesdb = mongodb.notes
-welcomedb = mongodb.welcome
+skipdb = mongodb.skipmode
+sudoersdb = mongodb.sudoers
+usersdb = mongodb.tgusersdb
 
-
-# Shifting to memory [ mongo sucks often]
-loop = {}
-playtype = {}
-playmode = {}
-channelconnect = {}
-langm = {}
-pause = {}
-mute = {}
-audio = {}
-video = {}
+# Shifting to memory [mongo sucks often]
 active = []
 activevideo = []
-command = []
-cleanmode = []
-nonadmin = {}
-vlimit = []
-maintenance = []
-suggestion = {}
+assistantdict = {}
 autoend = {}
+count = {}
+channelconnect = {}
+langm = {}
+loop = {}
+maintenance = []
+nonadmin = {}
+pause = {}
+playmode = {}
+playtype = {}
+skipmode = {}
+
+
 
 
 async def get_notes_count() -> dict:
