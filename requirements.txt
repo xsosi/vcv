@@ -9,8 +9,8 @@ hachoir
 heroku3
 motor
 pillow
-psutil
-py-tgcalls==0.9.7
+ntgcalls==1.2.0
+py-tgcalls==2.0.1
 pykeyboard
 pyrogram==2.0.106
 python-dotenv
