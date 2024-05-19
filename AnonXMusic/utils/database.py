@@ -744,7 +744,7 @@ async def get_assistant(chat_id: int) -> str:
 
     assistant = assistantdict.get(chat_id)
     if not assistant:
-        dbassistant = await db.find_one({"chat_id": chat_id})
+        dbassistant = await assdb.find_one({"chat_id": chat_id})
         if not dbassistant:
             userbot = await set_assistant(chat_id)
             return userbot
