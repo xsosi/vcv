@@ -23,7 +23,6 @@ from AnonXMusic.core.mongo import mongodb
 channeldb = mongodb.cplaymode
 commanddb = mongodb.commands
 cleandb = mongodb.cleanmode
-clonebotdb = pymongodb.clonebotdb
 playmodedb = mongodb.playmode
 playtypedb = mongodb.playtypedb
 langdb = mongodb.language
