@@ -784,7 +784,7 @@ async def group_assistant(self, chat_id: int) -> int:
 
     assistant = assistantdict.get(chat_id)
     if not assistant:
-        dbassistant = await db.find_one({"chat_id": chat_id})
+        dbassistant = await assdb.find_one({"chat_id": chat_id})
         if not dbassistant:
             assis = await set_calls_assistant(chat_id)
         else:
@@ -809,7 +809,6 @@ async def group_assistant(self, chat_id: int) -> int:
         return self.four
     elif int(assis) == 5:
         return self.five
-        
         
        
 
