@@ -696,6 +696,11 @@ async def get_video_bitrate(chat_id: int) -> str:
 assistantdict = {}
 
 
+async def get_assistant_number(chat_id: int) -> str:
+    assistant = assistantdict.get(chat_id)
+    return assistant
+
+
 async def get_client(assistant: int):
     if int(assistant) == 1:
         return userbot.one
@@ -709,9 +714,9 @@ async def get_client(assistant: int):
         return userbot.five
 
 
-async def save_assistant(chat_id, number):
+async def set_assistant_new(chat_id, number):
     number = int(number)
-    await db.update_one(
+    await assdb.update_one(
         {"chat_id": chat_id},
         {"$set": {"assistant": number}},
         upsert=True,
@@ -723,7 +728,7 @@ async def set_assistant(chat_id):
 
     ran_assistant = random.choice(assistants)
     assistantdict[chat_id] = ran_assistant
-    await db.update_one(
+    await assdb.update_one(
         {"chat_id": chat_id},
         {"$set": {"assistant": ran_assistant}},
         upsert=True,
@@ -764,7 +769,7 @@ async def set_calls_assistant(chat_id):
 
     ran_assistant = random.choice(assistants)
     assistantdict[chat_id] = ran_assistant
-    await db.update_one(
+    await assdb.update_one(
         {"chat_id": chat_id},
         {"$set": {"assistant": ran_assistant}},
         upsert=True,
