@@ -18,7 +18,7 @@ import random
 import config
 from AnonXMusic import userbot
 from typing import Dict, List, Union
-from AnonXMusic.core.mongo import mongodb, pymongodb
+from AnonXMusic.core.mongo import mongodb
 
 channeldb = mongodb.cplaymode
 commanddb = mongodb.commands
