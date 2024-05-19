@@ -181,6 +181,24 @@ async def del_welcome(chat_id: int):
     return await welcomedb.delete_one({"chat_id": chat_id})
 
 
+
+async def get_upvote_count(chat_id: int) -> int:
+    mode = count.get(chat_id)
+    if not mode:
+        mode = await countdb.find_one({"chat_id": chat_id})
+        if not mode:
+            return 5
+        count[chat_id] = mode["mode"]
+        return mode["mode"]
+    return mode
+
+
+async def set_upvotes(chat_id: int, mode: int):
+    count[chat_id] = mode
+    await countdb.update_one(
+        {"chat_id": chat_id}, {"$set": {"mode": mode}}, upsert=True
+    )
+
 # Auto End Stream
 
 
