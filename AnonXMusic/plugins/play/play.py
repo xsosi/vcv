@@ -29,7 +29,6 @@ from AnonXMusic.utils.inline.play import (
     slider_markup,
     track_markup,
 )
-from AnonXMusic.utils.inline.playlist import botplaylist_markup
 from AnonXMusic.utils.logger import play_logs
 from AnonXMusic.utils.stream.stream import stream
 
