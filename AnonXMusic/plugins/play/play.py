@@ -33,7 +33,6 @@ from AnonXMusic.utils.logger import play_logs
 from AnonXMusic.utils.stream.stream import stream
 
 # Command
-PLAY_COMMAND = get_command("PLAY_COMMAND")
 
 
 @app.on_message(
