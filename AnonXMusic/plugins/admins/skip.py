@@ -1,3 +1,8 @@
+#▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒✯ ʑᴇʟᴢᴀʟ_ᴍᴜsɪᴄ ✯▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+#▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒✯  T.me/ZThon   ✯▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+#▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒✯ T.me/Zelzal_Music ✯▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+
+from AnonXMusic.plugins.play.filters import command
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardMarkup, Message
 
@@ -14,14 +19,17 @@ from config import BANNED_USERS
 
 
 @app.on_message(
-    filters.command(["skip", "cskip", "next", "cnext"]) & filters.group & ~BANNED_USERS
+    command(["/skip", "تخطي", "/next", "سكب"]) & ~BANNED_USERS
 )
 @AdminRightsCheck
 async def skip(cli, message: Message, _, chat_id):
+    if " " in message.text:
+        return
     if not len(message.command) < 2:
         loop = await get_loop(chat_id)
         if loop != 0:
             return await message.reply_text(_["admin_8"])
+        user_mention = message.from_user.mention if message.from_user else "المشـرف"
         state = message.text.split(None, 1)[1].strip()
         if state.isnumeric():
             state = int(state)
@@ -43,7 +51,7 @@ async def skip(cli, message: Message, _, chat_id):
                                 try:
                                     await message.reply_text(
                                         text=_["admin_6"].format(
-                                            message.from_user.mention,
+                                            user_mention,
                                             message.chat.title,
                                         ),
                                         reply_markup=close_markup(_),
@@ -70,7 +78,7 @@ async def skip(cli, message: Message, _, chat_id):
             if not check:
                 await message.reply_text(
                     text=_["admin_6"].format(
-                        message.from_user.mention, message.chat.title
+                        user_mention, message.chat.title
                     ),
                     reply_markup=close_markup(_),
                 )
@@ -82,7 +90,7 @@ async def skip(cli, message: Message, _, chat_id):
             try:
                 await message.reply_text(
                     text=_["admin_6"].format(
-                        message.from_user.mention, message.chat.title
+                        user_mention, message.chat.title
                     ),
                     reply_markup=close_markup(_),
                 )
@@ -91,7 +99,7 @@ async def skip(cli, message: Message, _, chat_id):
                 return
     queued = check[0]["file"]
     title = (check[0]["title"]).title()
-    user = check[0]["by"]
+    user = check[0]["by"] if check[0] else "المشـرف"
     streamtype = check[0]["streamtype"]
     videoid = check[0]["vidid"]
     status = True if str(streamtype) == "video" else None
