@@ -1,9 +1,9 @@
 #
-# Copyright (C) 2024-present by TeamAuput@Github, < https://github.com/TeamAuput >.
+# Copyright (C) 2024-present by TeamAnony@Github, < https://github.com/TeamAnony >.
 #
-# This file is part of < https://github.com/TeamAuput/AuputBot > project,
+# This file is part of < https://github.com/TeamAnony/AnonXMusicBot > project,
 # and is released under the "GNU v3.0 License Agreement".
-# Please see < https://github.com/TeamAuput/AuputBot/blob/master/LICENSE >
+# Please see < https://github.com/TeamAnony/AnonXMusicBot/blob/master/LICENSE >
 #
 # All rights reserved.
 #
@@ -17,29 +17,30 @@ from pytgcalls.exceptions import NoActiveGroupCall
 import config
 from config import BANNED_USERS, lyrical
 from strings import get_command
-from Auput.utils.bk import command
-from Auput import Apple, Resso, SoundCloud, Spotify, Telegram, YouTube, app
-from Auput.core.call import Auput
-from Auput.utils import seconds_to_min, time_to_seconds
-from Auput.utils.database import is_video_allowed
-from Auput.utils.decorators.language import languageCB
-from Auput.utils.decorators.play import PlayWrapper
-from Auput.utils.formatters import formats
-from Auput.utils.inline.play import (
+from AnonXMusic import Apple, Resso, SoundCloud, Spotify, Telegram, YouTube, app
+from AnonXMusic.core.call import Anony
+from AnonXMusic.utils import seconds_to_min, time_to_seconds
+from AnonXMusic.utils.channelplay import get_channeplayCB
+from AnonXMusic.utils.database import is_video_allowed
+from AnonXMusic.utils.decorators.language import languageCB
+from AnonXMusic.utils.decorators.play import PlayWrapper
+from AnonXMusic.utils.formatters import formats
+from AnonXMusic.utils.inline.play import (
     livestream_markup,
     playlist_markup,
     slider_markup,
     track_markup,
 )
-from Auput.utils.inline.playlist import botplaylist_markup
-from Auput.utils.logger import play_logs
-from Auput.utils.stream.stream import stream
+from AnonXMusic.utils.inline.playlist import botplaylist_markup
+from AnonXMusic.utils.logger import play_logs
+from AnonXMusic.utils.stream.stream import stream
 
 # Command
+PLAY_COMMAND = get_command("PLAY_COMMAND")
 
 
 @app.on_message(
-    command(
+    filters.command(
         [
             "play",
             "vplay",
@@ -51,6 +52,7 @@ from Auput.utils.stream.stream import stream
             "cplayforce",
             "cvplayforce",
         ],
+        prefixes=["/", "!", "%", ",", "", ".", "@", "#"],
     )
     & filters.group
     & ~BANNED_USERS
@@ -317,7 +319,7 @@ async def play_commnd(
             return await mystic.delete()
         else:
             try:
-                await Auput.stream_call(url)
+                await Anony.stream_call(url)
             except NoActiveGroupCall:
                 await mystic.edit_text(
                     "ᴛʜᴇʀᴇ's ᴀɴ ᴇʀʀᴏʀ ɪɴ ᴛʜᴇ ʙᴏᴛ, ᴩʟᴇᴀsᴇ ʀᴇᴩᴏʀᴛ ɪᴛ ᴛᴏ sᴜᴩᴩᴏʀᴛ ᴄʜᴀᴛ ᴀs sᴏᴏɴ ᴀs ᴩᴏssɪʙʟᴇ."
@@ -546,7 +548,7 @@ async def anonymous_check(client, CallbackQuery):
         return
 
 
-@app.on_callback_query(filters.regex("AuputPlaylists") & ~BANNED_USERS)
+@app.on_callback_query(filters.regex("AnonyPlaylists") & ~BANNED_USERS)
 @languageCB
 async def play_playlists_command(client, CallbackQuery, _):
     callback_data = CallbackQuery.data.strip()
