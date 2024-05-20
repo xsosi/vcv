@@ -609,10 +609,39 @@ async def decorators(self):
                 return
             await self.play(client, update.chat_id)
 
-
-
-
-
+        @self.one.on_update(filters.chat_update(GroupCallParticipant.Action.UPDATED))
+        @self.two.on_update(filters.chat_update(GroupCallParticipant.Action.UPDATED))
+        @self.three.on_update(filters.chat_update(GroupCallParticipant.Action.UPDATED))
+        @self.four.on_update(filters.chat_update(GroupCallParticipant.Action.UPDATED))
+        @self.five.on_update(filters.chat_update(GroupCallParticipant.Action.UPDATED))
+        async def participants_change_handler(client, update: Update):
+            if not isinstance(
+                update, GroupCallParticipant.Action.JOINED
+            ) and not isinstance(update, GroupCallParticipant.Action.LEFT):
+                return
+            chat_id = update.chat_id
+            users = counter.get(chat_id)
+            if not users:
+                try:
+                    got = len(await client.get_participants(chat_id))
+                except:
+                    return
+                counter[chat_id] = got
+                if got == 1:
+                    autoend[chat_id] = datetime.now() + timedelta(minutes=AUTO_END_TIME)
+                    return
+                autoend[chat_id] = {}
+            else:
+                final = (
+                    users + 1
+                    if isinstance(update, GroupCallParticipant.Action.JOINED)
+                    else users - 1
+                )
+                counter[chat_id] = final
+                if final == 1:
+                    autoend[chat_id] = datetime.now() + timedelta(minutes=AUTO_END_TIME)
+                    return
+                autoend[chat_id] = {}
 
 
 
