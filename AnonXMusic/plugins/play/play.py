@@ -21,7 +21,6 @@ from Auput.utils.bk import command
 from Auput import Apple, Resso, SoundCloud, Spotify, Telegram, YouTube, app
 from Auput.core.call import Auput
 from Auput.utils import seconds_to_min, time_to_seconds
-from Auput.utils.channelplay import get_channeplayCB
 from Auput.utils.database import is_video_allowed
 from Auput.utils.decorators.language import languageCB
 from Auput.utils.decorators.play import PlayWrapper
