@@ -563,19 +563,19 @@ class Call(PyTgCalls):
     async def ping(self):
         pings = []
         if config.STRING1:
-            pings.append(await self.one.ping)
+            pings.append(self.one.ping)
         if config.STRING2:
-            pings.append(await self.two.ping)
+            pings.append(self.two.ping)
         if config.STRING3:
-            pings.append(await self.three.ping)
+            pings.append(self.three.ping)
         if config.STRING4:
-            pings.append(await self.four.ping)
+            pings.append(self.four.ping)
         if config.STRING5:
-            pings.append(await self.five.ping)
+            pings.append(self.five.ping)
         return str(round(sum(pings) / len(pings), 3))
 
     async def start(self):
-        LOGGER(__name__).info("Starting PyTgCalls Client...\n")
+        LOGGER(__name__).info("Starting PyTgCalls Client\n")
         if config.STRING1:
             await self.one.start()
         if config.STRING2:
@@ -587,9 +587,7 @@ class Call(PyTgCalls):
         if config.STRING5:
             await self.five.start()
 
-    
-
-async def decorators(self):
+    async def decorators(self):
         @self.one.on_update(filters.chat_update(ChatUpdate.Status.LEFT_CALL))
         @self.two.on_update(filters.chat_update(ChatUpdate.Status.LEFT_CALL))
         @self.three.on_update(filters.chat_update(ChatUpdate.Status.LEFT_CALL))
@@ -641,8 +639,6 @@ async def decorators(self):
                     autoend[chat_id] = datetime.now() + timedelta(minutes=AUTO_END_TIME)
                     return
                 autoend[chat_id] = {}
-
-
 
 
 Anony = Call()
