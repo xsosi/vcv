@@ -589,7 +589,6 @@ class Call(PyTgCalls):
 
     
 
-
 async def decorators(self):
         @self.one.on_update(filters.chat_update(ChatUpdate.Status.LEFT_CALL))
         @self.two.on_update(filters.chat_update(ChatUpdate.Status.LEFT_CALL))
@@ -642,7 +641,6 @@ async def decorators(self):
                     autoend[chat_id] = datetime.now() + timedelta(minutes=AUTO_END_TIME)
                     return
                 autoend[chat_id] = {}
-
 
 
 
