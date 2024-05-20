@@ -4,7 +4,7 @@ from ast import ExceptHandler
 from pyrogram import filters, Client
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InputMediaPhoto, Message
 from pytgcalls.exceptions import NoActiveGroupCall
-
+from ntgcalls import TelegramServerError
 import config
 from config import BOT_TOKEN
 from strings.filters import command
