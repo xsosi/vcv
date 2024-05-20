@@ -591,41 +591,23 @@ class Call(PyTgCalls):
 
 
 async def decorators(self):
-    
-    
-      
-        @self.two.on_update()
-        @self.three.on_update()
-        @self.four.on_update()
-        @self.five.on_update()
-        @self.one.on_closed_voice_chat()
-        @self.two.on_closed_voice_chat()
-        @self.three.on_closed_voice_chat()
-        @self.four.on_closed_voice_chat()
-        @self.five.on_closed_voice_chat()
-        @self.one.on_left()
-        @self.two.on_left()
-        @self.three.on_left()
-        @self.four.on_left()
-        @self.five.on_left()
+        @self.one.on_update(filters.chat_update(ChatUpdate.Status.LEFT_CALL))
+        @self.two.on_update(filters.chat_update(ChatUpdate.Status.LEFT_CALL))
+        @self.three.on_update(filters.chat_update(ChatUpdate.Status.LEFT_CALL))
+        @self.four.on_update(filters.chat_update(ChatUpdate.Status.LEFT_CALL))
+        @self.five.on_update(filters.chat_update(ChatUpdate.Status.LEFT_CALL))
         async def stream_services_handler(_, chat_id: int):
             await self.stop_stream(chat_id)
 
-        @self.one.on_update()
-        @self.two.on_update()
-        @self.three.on_update()
-        @self.four.on_update()
-        @self.five.on_update()
-        async def stream_end_handler1(client, update: Update):
+        @self.one.on_update(filters.stream_end)
+        @self.two.on_update(filters.stream_end)
+        @self.three.on_update(filters.stream_end)
+        @self.four.on_update(filters.stream_end)
+        @self.five.on_update(filters.stream_end)
+        async def stream_end_handler(client, update: Update):
             if not isinstance(update, StreamAudioEnded):
                 return
-            await self.change_stream(client, update.chat_id)
-
-
-
-
-
-
+            await self.play(client, update.chat_id)
 
 
 
