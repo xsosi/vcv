@@ -611,18 +611,21 @@ async def decorators(self):
         async def stream_services_handler(_, chat_id: int):
             await self.stop_stream(chat_id)
 
-        @self.one.on_stream_end()
-        @self.two.on_stream_end()
-        @self.three.on_stream_end()
-        @self.four.on_stream_end()
-        @self.five.on_stream_end()
+        @self.one.on_update()
+        @self.two.on_update()
+        @self.three.on_update()
+        @self.four.on_update()
+        @self.five.on_update()
         async def stream_end_handler1(client, update: Update):
             if not isinstance(update, StreamAudioEnded):
                 return
             await self.change_stream(client, update.chat_id)
 
 
-Anony = Call()
+
+
+
+
 
 
 
