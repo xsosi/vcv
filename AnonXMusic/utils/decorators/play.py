@@ -21,7 +21,8 @@ from AnonXMusic.utils.database import (
     is_maintenance,
 )
 from AnonXMusic.utils.inline import botplaylist_markup
-from config import PLAYLIST_IMG_URL, SUPPORT_CHAT, adminlist
+from config import SUPPORT_GROUP as SUPPORT_CHAT
+from config import adminlist
 from strings import get_string
 
 links = {}
