@@ -33,6 +33,7 @@ import config
 from AnonXMusic import LOGGER, YouTube, app
 from AnonXMusic.utils.formatters import check_duration, seconds_to_min, speed_converter
 from AnonXMusic.misc import db
+from pytgcalls.types.input_stream import AudioPiped, AudioVideoPiped
 from AnonXMusic.utils.database import (
     add_active_chat,
     add_active_video_chat,
