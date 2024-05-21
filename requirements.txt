@@ -12,7 +12,6 @@ lyricsgenius
 motor
 pillow
 psutil
-ntgcalls
 py-tgcalls
 pykeyboard
 pykeyboard
