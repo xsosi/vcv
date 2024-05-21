@@ -11,7 +11,7 @@ bot = Client(
     plugins=dict(root="MZombie")
     )
 
-DEVS = ["lllliioooll"]
+DEVS = ["lllby"]
 
 bot_id = bot.bot_token.split(":")[0]
 
