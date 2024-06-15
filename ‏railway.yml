@@ -1,0 +1,9 @@
+# Build configuration
+build:
+  worker:
+    dockerfile: Dockerfile
+
+# Run configuration
+run:
+  worker:
+    command: bash start
