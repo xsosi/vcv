@@ -36,7 +36,7 @@ async def log_(client, message, _):
     except:
         await message.reply_text(_["server_1"])
 
-@app.on_message(command(["dellogs"]) & filters.user(SUDOERS))
+@app.on_message(command(["dellogs"]) & filters.create(SUDOERS))
 async def delete_all_logs(client: Client, message: Message):
     try:
 
