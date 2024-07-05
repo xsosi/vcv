@@ -36,25 +36,7 @@ async def log_(client, message, _):
     except:
         await message.reply_text(_["server_1"])
 
-@app.on_message(command(["dellogs"]) & filters.create(SUDOERS))
-async def delete_all_logs(client: Client, message: Message):
-    try:
 
-        log_directory = "/path/to/your/logs/"
-
-
-        for filename in os.listdir(log_directory):
-
-            if filename.startswith("log_"):
-
-                file_path = os.path.join(log_directory, filename)
-
-                os.remove(file_path)
-        
-        await message.reply_text("تم حذف جميع ملفات السجلات بنجاح.")
-    
-    except Exception as e:
-        await message.reply_text("حدث خطأ أثناء محاولة حذف ملفات السجلات.")
 
 @app.on_message(command(["تحديث", "حدث"]) & SUDOERS)
 @language
